@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.scoreRouter = void 0;
+const express_1 = require("express");
+const score_controller_1 = require("./score-controller");
+const auth_1 = require("../../shared/middlewares/auth");
+exports.scoreRouter = (0, express_1.Router)();
+exports.scoreRouter.post("/", auth_1.auth, score_controller_1.submitScore);
+exports.scoreRouter.get("/quiz/:quizId/scores", score_controller_1.getQuizScores);
+exports.scoreRouter.get("/user/:userId/scores", score_controller_1.getUserScores);

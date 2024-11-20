@@ -1,7 +1,11 @@
 
 import {Router} from "express";
-import { submitScore } from "./score-controller";
+import { getQuizScores, getUserScores, submitScore } from "./score-controller";
+import { auth } from "../../shared/middlewares/auth";
 
 export const scoreRouter = Router();
 
-scoreRouter.post("/", submitScore);
+scoreRouter.post("/", auth, submitScore);
+scoreRouter.get("/quiz/:quizId/scores", getQuizScores);
+scoreRouter.get("/user/:userId/scores", getUserScores);
+
