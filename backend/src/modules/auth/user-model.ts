@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, mongo, Schema } from "mongoose";
 
 
 export interface IUser extends Document{
@@ -7,6 +7,12 @@ export interface IUser extends Document{
     email : string,
     password : string,
     college? : string,
+    attemptedQuiz :  [{
+        quizId : {type : mongoose.Schema.Types.ObjectId};
+        score : Number;
+        totalQuestions : Number;
+        completedAt : Date;
+    }]
 
 }
 
@@ -29,6 +35,12 @@ const userSchema : Schema<IUser> = new Schema(
         college : {
             type : String,
         },
+        attemptedQuiz : [{
+            quizId : {type : mongoose.Schema.Types.ObjectId},
+            score : Number,
+            totalQuestions : Number,
+            completedAt : Date,
+        }]
     },
         {timestamps : true}
     

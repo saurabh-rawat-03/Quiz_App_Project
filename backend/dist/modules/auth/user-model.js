@@ -41,6 +41,12 @@ const userSchema = new mongoose_1.Schema({
     college: {
         type: String,
     },
+    attemptedQuiz: [{
+            quizId: { type: mongoose_1.default.Schema.Types.ObjectId },
+            score: Number,
+            totalQuestions: Number,
+            completedAt: Date,
+        }]
 }, { timestamps: true });
 const User = mongoose_1.default.model("user", userSchema);
 exports.default = User;

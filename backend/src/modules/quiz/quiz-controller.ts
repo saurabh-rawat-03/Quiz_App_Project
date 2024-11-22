@@ -65,6 +65,15 @@ export const submitQuiz = async (req : Request, res : Response) => {
 
         await newScore.save();
 
+        user.attemptedQuiz.push({
+            quizId,
+            score,
+            totalQuestions : quiz.questions.length,
+            completedAt : new Date(),
+        });
+
+        await user.save();
+
         res.json({score, totalQuestions: quiz.questions.length});
 
     }catch(err){

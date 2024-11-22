@@ -64,6 +64,13 @@ const submitQuiz = async (req, res) => {
             totalQuestions: quiz.questions.length.toFixed,
         });
         await newScore.save();
+        user.attemptedQuiz.push({
+            quizId,
+            score,
+            totalQuestions: quiz.questions.length,
+            completedAt: new Date(),
+        });
+        await user.save();
         res.json({ score, totalQuestions: quiz.questions.length });
     }
     catch (err) {
